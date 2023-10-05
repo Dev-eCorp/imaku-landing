@@ -3,7 +3,12 @@ import React, { useContext } from "react";
 import { Container, Grid, Typography, TextField, Button } from "@mui/material";
 import MailContext from "@/contexts/FormContext";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, FieldValues } from "react-hook-form";
+
+interface FormData extends FieldValues {
+	name: string;
+	email: string;
+}
 
 const Hero = () => {
 	const router = useRouter();
@@ -19,9 +24,9 @@ const Hero = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm();
+	} = useForm<FormData>();
 
-	const onSubmit = (data) => {
+	const onSubmit = (data: FormData) => {
 		updateMailData(data);
 		router.push("/contact");
 	};
