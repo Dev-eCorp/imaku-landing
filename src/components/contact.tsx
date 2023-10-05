@@ -97,11 +97,11 @@ const Contact: FC = () => {
 
 		setValue("name", mailData.name);
 		setValue("email", mailData.email);
-	}, []);
+	}, [mailData.email, mailData.name, setValue]);
 
 	const form = useRef<HTMLFormElement>(null);
 
-	const onValid = (data) => {
+	const onValid = () => {
 		if (form.current) {
 			emailjs
 				.sendForm(
